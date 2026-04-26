@@ -1,0 +1,110 @@
+# US Building Permit Scraper
+
+Pull building permits from US city open data portals. Built for construction lead generation - solar installers, roofing contractors, HVAC companies, and suppliers who need fresh permit data to find projects before competitors do.
+
+## What it returns
+
+Every permit record includes:
+
+| Field | Description |
+|-------|-------------|
+| `city`, `state` | City and state |
+| `permitNumber` | Permit or job number |
+| `permitType` | Type of permit (e.g. New Construction, Renovation, Electrical) |
+| `address` | Full street address |
+| `projectValue` | Reported construction value in USD (where available) |
+| `contractorName` | Licensed contractor on the permit |
+| `contractorLicense` | Contractor license number |
+| `contractorLicenseType` | License type (General Contractor, Electrician, etc.) |
+| `issueDate` | Date permit was issued |
+| `status` | Permit status (where available) |
+| `description` | Work description (where available) |
+| `latitude`, `longitude` | Coordinates (where available) |
+
+## Supported cities
+
+| City | State | Contractor data | Project value | Data freshness |
+|------|-------|----------------|---------------|----------------|
+| Chicago | IL | Name + contact type | Yes (reported_cost) | Current (daily updates) |
+| New York City (or NYC) | NY | License holder name + license no. | Yes (estimated_job_costs) | Current (DOB NOW dataset) |
+| San Francisco (or SF) | CA | None in this dataset | Yes (revised_cost) | Current |
+| Los Angeles (or LA) | CA | Business name + license | Yes (valuation) | Typically 12-24 months behind |
+
+**Note on Los Angeles:** The LA open data portal permit datasets are not regularly updated and currently reflect data through mid-2023. For current LA leads, the `customEndpoints` option can point to the LADBS permit portal directly if you have access to a more current source.
+
+More cities coming. You can also add any Socrata-powered open data portal via `customEndpoints`.
+
+## Example inputs
+
+**Get all new construction permits in Chicago issued this year:**
+```json
+{
+  "cities": ["Chicago"],
+  "issuedAfter": "2026-01-01",
+  "permitTypes": ["new construction"],
+  "maxResultsPerSource": 1000
+}
+```
+
+**Multi-city lead gen sweep:**
+```json
+{
+  "cities": ["Chicago", "Los Angeles", "New York City"],
+  "issuedAfter": "2026-04-01",
+  "maxResultsPerSource": 500
+}
+```
+
+**High-value projects only (Chicago):**
+```json
+{
+  "cities": ["Chicago"],
+  "issuedAfter": "2026-01-01",
+  "minProjectValue": 50000
+}
+```
+
+## Adding your own city
+
+Any city running Socrata open data can be added via `customEndpoints`:
+
+```json
+{
+  "cities": [],
+  "customEndpoints": [
+    {
+      "domain": "data.seattle.gov",
+      "datasetId": "your-dataset-id",
+      "cityName": "Seattle",
+      "stateCode": "WA",
+      "fields": {
+        "permitNumber": "application_permit_number",
+        "permitType": "permit_type",
+        "issueDate": "issue_date",
+        "streetNumber": "address",
+        "contractorName": "applicant_name"
+      }
+    }
+  ],
+  "issuedAfter": "2026-01-01"
+}
+```
+
+Find your city's dataset at [data.socrata.com](https://www.socrata.com/solutions/open-data/) or by searching `[your city] open data building permits`.
+
+## How permits become leads
+
+A permit issued this week means a project is about to start. The lead window is short - typically 2-6 weeks before contractors are already on site. Run this actor on a weekly or daily schedule to catch permits while they're still warm.
+
+Example workflow:
+1. Run weekly on target cities filtered to relevant permit types
+2. Export to CSV and import to your CRM
+3. Call the contractor (or property owner) within 48 hours of issue date
+
+## Pricing
+
+$1.50 per 1,000 permits (base). Results from all cities in a single run count toward the same total.
+
+## Data sources
+
+All data is sourced from official government open data portals via the Socrata SODA API. All datasets are public domain. No scraping - direct API calls only.

@@ -1,0 +1,64 @@
+{
+  "title": "US Building Permit Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "cities": {
+      "title": "Cities",
+      "type": "array",
+      "description": "US cities to pull building permits from. Supported: Chicago, New York City, San Francisco, Los Angeles. Case-insensitive.",
+      "editor": "stringList",
+      "example": ["Chicago", "Los Angeles", "San Francisco"],
+      "prefill": ["Chicago"]
+    },
+    "issuedAfter": {
+      "title": "Issued after (date)",
+      "type": "string",
+      "description": "Only return permits issued on or after this date. Format: YYYY-MM-DD. Leave blank for no start date filter.",
+      "editor": "textfield",
+      "example": "2026-01-01",
+      "prefill": "2026-01-01"
+    },
+    "issuedBefore": {
+      "title": "Issued before (date)",
+      "type": "string",
+      "description": "Only return permits issued on or before this date. Format: YYYY-MM-DD. Leave blank for no end date filter.",
+      "editor": "textfield",
+      "example": "2026-12-31"
+    },
+    "permitTypes": {
+      "title": "Permit type filter",
+      "type": "array",
+      "description": "Filter to permits whose type contains one of these strings (case-insensitive). Leave blank for all types. Examples: 'new construction', 'renovation', 'electrical', 'roofing', 'solar'.",
+      "editor": "stringList",
+      "example": ["new construction", "renovation"]
+    },
+    "minProjectValue": {
+      "title": "Minimum project value ($)",
+      "type": "integer",
+      "description": "Only return permits with a reported project value at or above this amount. Set to 0 for no minimum. Not all cities report project value — applies where available.",
+      "editor": "number",
+      "default": 0,
+      "minimum": 0
+    },
+    "maxResultsPerSource": {
+      "title": "Max results per city",
+      "type": "integer",
+      "description": "Maximum number of permits to return per city. Set to 0 for no limit.",
+      "editor": "number",
+      "default": 0,
+      "prefill": 1000,
+      "minimum": 0
+    },
+    "requestDelayMs": {
+      "title": "Delay between requests (ms)",
+      "type": "integer",
+      "description": "Milliseconds to wait between paginated API requests. Increase if you encounter rate limits.",
+      "editor": "number",
+      "default": 300,
+      "minimum": 0,
+      "maximum": 5000
+    }
+  },
+  "required": ["cities"]
+}
