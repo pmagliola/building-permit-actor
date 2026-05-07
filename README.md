@@ -35,10 +35,13 @@ Every permit record includes:
 | Orlando | FL | Company name | Yes | Current (daily updates) |
 | Baton Rouge | LA | Contractor name | Yes | Current |
 | New Orleans (or NOLA) | LA | None in this dataset | Yes | Current (2018-present) |
+| Minneapolis | MN | Company name | Yes | Current |
+| Baltimore | MD | None in this dataset | Yes | Current |
+| Tempe | AZ | Company name + license | Yes | Current (weekly updates) |
 
 **Note on Los Angeles:** The LA open data portal permit datasets are not regularly updated and currently reflect data approximately 12-24 months behind.
 
-More cities added regularly. You can also add any Socrata-powered open data portal via `customEndpoints`.
+More cities added regularly. Supports both Socrata and ArcGIS Hub open data portals.
 
 ## Example inputs
 
