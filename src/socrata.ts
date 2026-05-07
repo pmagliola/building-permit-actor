@@ -130,7 +130,7 @@ function normalizeRecord(record: RawRecord, config: CityConfig): PermitRecord {
   return {
     city: config.name,
     state: config.state,
-    source: `${config.domain}/${config.datasetId}`,
+    source: `${config.domain!}/${config.datasetId!}`,
     permitNumber: extractField(record, fields.permitNumber),
     permitType: extractField(record, fields.permitType),
     address: buildAddress(record, config),
@@ -157,7 +157,7 @@ export async function fetchPermits(
   let offset = 0;
 
   const whereClause = buildWhereClause(config, options);
-  const baseUrl = `https://${config.domain}/resource/${config.datasetId}.json`;
+  const baseUrl = `https://${config.domain!}/resource/${config.datasetId!}.json`;
   const orderField = config.fields.issueDate ?? 'permit_number';
 
   while (true) {
@@ -189,7 +189,7 @@ export async function fetchPermits(
     if (!response.ok) {
       const body = await response.text().catch(() => '');
       throw new Error(
-        `HTTP ${response.status} ${response.statusText} from ${config.domain}: ${body.slice(0, 200)}`,
+        `HTTP ${response.status} ${response.statusText} from ${config.domain!}: ${body.slice(0, 200)}`,
       );
     }
 
@@ -197,7 +197,7 @@ export async function fetchPermits(
     try {
       records = (await response.json()) as RawRecord[];
     } catch {
-      throw new Error(`Invalid JSON response from ${config.domain}`);
+      throw new Error(`Invalid JSON response from ${config.domain!}`);
     }
 
     if (!Array.isArray(records) || records.length === 0) break;

@@ -5,8 +5,14 @@ import type { FieldMapping } from './types.js';
 export interface CityConfig {
   name: string;
   state: string;
-  domain: string;
-  datasetId: string;
+  /** undefined = Socrata (default) */
+  platform?: 'arcgis';
+  /** Socrata: required. ArcGIS: optional (used in logs/error objects only) */
+  domain?: string;
+  /** Socrata: required. ArcGIS: optional */
+  datasetId?: string;
+  /** ArcGIS only: full FeatureServer URL including layer index */
+  featureServiceUrl?: string;
   fields: FieldMapping;
   defaultWhere?: string;
 }
@@ -170,6 +176,90 @@ const NEW_ORLEANS: CityConfig = {
   },
 };
 
+// ─── ArcGIS cities ────────────────────────────────────────────────────────────
+
+const MINNEAPOLIS: CityConfig = {
+  name: 'Minneapolis',
+  state: 'MN',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CCS_Permits/FeatureServer/0',
+  fields: {
+    permitNumber: 'permitNumber',
+    permitType: 'permitType',
+    issueDate: 'issueDate',
+    projectValue: 'value',
+    streetNumber: 'Display',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'applicantName',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'status',
+    description: 'comments',
+    latitude: 'Latitude',
+    longitude: 'Longitude',
+    locationObject: null,
+  },
+};
+
+// No contractor data in this dataset; coordinates extracted from geometry
+const BALTIMORE: CityConfig = {
+  name: 'Baltimore',
+  state: 'MD',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://egisdata.baltimorecity.gov/egis/rest/services/Housing/DHCD_Open_Baltimore_Datasets/FeatureServer/3',
+  fields: {
+    permitNumber: 'CaseNumber',
+    permitType: 'ExistingUse',
+    issueDate: 'IssuedDate',
+    projectValue: 'Cost',
+    streetNumber: 'Address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: null,
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: null,
+    description: 'Description',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
+const TEMPE: CityConfig = {
+  name: 'Tempe',
+  state: 'AZ',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services.arcgis.com/lQySeXwbBg53XWDi/arcgis/rest/services/building_permits/FeatureServer/0',
+  fields: {
+    permitNumber: 'PermitNum',
+    permitType: 'PermitType',
+    issueDate: 'IssuedDateDtm',
+    projectValue: 'EstProjectCost',
+    streetNumber: 'OriginalAddress1',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'ContractorCompanyName',
+    contractorNamePart2: null,
+    contractorLicense: 'ContractorLicNum',
+    contractorLicenseType: null,
+    status: 'StatusCurrent',
+    description: 'Description',
+    latitude: 'Latitude',
+    longitude: 'Longitude',
+    locationObject: null,
+  },
+};
+
 const CHICAGO: CityConfig = {
   name: 'Chicago',
   state: 'IL',
@@ -296,6 +386,9 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   'baton rouge': BATON_ROUGE,
   'new orleans': NEW_ORLEANS,
   nola: NEW_ORLEANS,
+  minneapolis: MINNEAPOLIS,
+  baltimore: BALTIMORE,
+  tempe: TEMPE,
 };
 
 export function lookupCity(name: string): CityConfig | null {

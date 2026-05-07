@@ -1,5 +1,6 @@
 import { Actor, log } from 'apify';
 import { fetchPermits } from './socrata.js';
+import { fetchPermitsArcGis } from './arcgis.js';
 import { lookupCity, listCities } from './cities.js';
 import type { Input } from './types.js';
 
@@ -37,17 +38,24 @@ for (const cityName of cities) {
     continue;
   }
 
-  log.info(`\n── ${config.name}, ${config.state} (${config.domain}/${config.datasetId})`);
+  const source =
+    config.featureServiceUrl ?? `${config.domain ?? ''}/${config.datasetId ?? ''}`;
+  log.info(`\n── ${config.name}, ${config.state} (${source})`);
+
+  const fetchOptions = {
+    issuedAfter,
+    issuedBefore,
+    permitTypes,
+    minProjectValue,
+    maxResults: maxResultsPerSource,
+    requestDelayMs,
+  };
 
   try {
-    const permits = await fetchPermits(config, {
-      issuedAfter,
-      issuedBefore,
-      permitTypes,
-      minProjectValue,
-      maxResults: maxResultsPerSource,
-      requestDelayMs,
-    });
+    const permits =
+      config.platform === 'arcgis'
+        ? await fetchPermitsArcGis(config, fetchOptions)
+        : await fetchPermits(config, fetchOptions);
 
     log.info(`${config.name}: ${permits.length} permits fetched`);
 
@@ -56,12 +64,7 @@ for (const cityName of cities) {
     }
   } catch (err) {
     log.error(`Failed to fetch ${config.name}: ${err}`);
-    await dataset.pushData({
-      city: config.name,
-      state: config.state,
-      source: `${config.domain}/${config.datasetId}`,
-      error: String(err),
-    });
+    await dataset.pushData({ city: config.name, state: config.state, source, error: String(err) });
   }
 }
 
