@@ -6,9 +6,9 @@
     "cities": {
       "title": "Cities",
       "type": "array",
-      "description": "US cities to pull building permits from. Supported: Chicago, New York City, San Francisco, Los Angeles. Case-insensitive.",
+      "description": "US cities to pull building permits from. Supported: Chicago, New York City, San Francisco, Los Angeles, Seattle, Austin, Cincinnati, Orlando, Baton Rouge, New Orleans. Case-insensitive.",
       "editor": "stringList",
-      "example": ["Chicago", "Los Angeles", "San Francisco"],
+      "example": ["Chicago", "Los Angeles", "Seattle", "Austin"],
       "prefill": ["Chicago"]
     },
     "issuedAfter": {

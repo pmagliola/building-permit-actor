@@ -25,14 +25,20 @@ Every permit record includes:
 
 | City | State | Contractor data | Project value | Data freshness |
 |------|-------|----------------|---------------|----------------|
-| Chicago | IL | Name + contact type | Yes (reported_cost) | Current (daily updates) |
-| New York City (or NYC) | NY | License holder name + license no. | Yes (estimated_job_costs) | Current (DOB NOW dataset) |
-| San Francisco (or SF) | CA | None in this dataset | Yes (revised_cost) | Current |
-| Los Angeles (or LA) | CA | Business name + license | Yes (valuation) | Typically 12-24 months behind |
+| Chicago | IL | Name + contact type | Yes | Current (daily updates) |
+| New York City (or NYC) | NY | License holder name + license no. | Yes | Current (DOB NOW dataset) |
+| San Francisco (or SF) | CA | None in this dataset | Yes | Current |
+| Los Angeles (or LA) | CA | Business name + license | Yes | Typically 12-24 months behind |
+| Seattle | WA | Company name | Yes | Current (daily updates) |
+| Austin | TX | Company name + contact name | Yes | Current (daily updates) |
+| Cincinnati | OH | Company name | Yes | Current (daily updates) |
+| Orlando | FL | Company name | Yes | Current (daily updates) |
+| Baton Rouge | LA | Contractor name | Yes | Current |
+| New Orleans (or NOLA) | LA | None in this dataset | Yes | Current (2018-present) |
 
-**Note on Los Angeles:** The LA open data portal permit datasets are not regularly updated and currently reflect data through mid-2023. For current LA leads, the `customEndpoints` option can point to the LADBS permit portal directly if you have access to a more current source.
+**Note on Los Angeles:** The LA open data portal permit datasets are not regularly updated and currently reflect data approximately 12-24 months behind.
 
-More cities coming. You can also add any Socrata-powered open data portal via `customEndpoints`.
+More cities added regularly. You can also add any Socrata-powered open data portal via `customEndpoints`.
 
 ## Example inputs
 
@@ -49,7 +55,7 @@ More cities coming. You can also add any Socrata-powered open data portal via `c
 **Multi-city lead gen sweep:**
 ```json
 {
-  "cities": ["Chicago", "Los Angeles", "New York City"],
+  "cities": ["Chicago", "Los Angeles", "New York City", "Seattle", "Austin", "Orlando"],
   "issuedAfter": "2026-04-01",
   "maxResultsPerSource": 500
 }
