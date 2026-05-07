@@ -59,6 +59,15 @@ function extractLocationFromObject(
   const obj = record[fieldName];
   if (!obj || typeof obj !== 'object') return { lat: null, lon: null };
   const loc = obj as Record<string, unknown>;
+
+  // GeoJSON Point: { type: "Point", coordinates: [lng, lat] }
+  if (loc.type === 'Point' && Array.isArray(loc.coordinates) && loc.coordinates.length >= 2) {
+    const lon = parseFloat(String(loc.coordinates[0]));
+    const lat = parseFloat(String(loc.coordinates[1]));
+    return { lat: isNaN(lat) ? null : lat, lon: isNaN(lon) ? null : lon };
+  }
+
+  // Standard Socrata location object: { latitude: "...", longitude: "..." }
   const lat = loc.latitude != null ? parseFloat(String(loc.latitude)) : NaN;
   const lon = loc.longitude != null ? parseFloat(String(loc.longitude)) : NaN;
   return { lat: isNaN(lat) ? null : lat, lon: isNaN(lon) ? null : lon };

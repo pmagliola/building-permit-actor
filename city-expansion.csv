@@ -1,0 +1,231 @@
+rank,city,state,population_thousands,already_implemented,platform,dataset_id,domain,confidence,batch,notes
+1,Chicago,IL,2693,yes,Socrata,ydr8-5enu,data.cityofchicago.org,confirmed,done,
+2,New York City,NY,8336,yes,Socrata,rbx6-tga4,data.cityofnewyork.us,confirmed,done,
+3,San Francisco,CA,873,yes,Socrata,i98e-djp9,data.sfgov.org,confirmed,done,
+4,Los Angeles,CA,3898,yes,Socrata,d9aa-v8bm,data.lacity.org,confirmed,done,Data runs 12-24 months behind
+5,Houston,TX,2304,no,Unknown,,,data.houstontx.gov,low,verify,Only summary stats visible - no record-level permit dataset found
+6,Phoenix,AZ,1608,no,Unknown,,,unknown,low,verify,No open data portal confirmed
+7,Philadelphia,PA,1584,no,ArcGIS_Hub,,,data.phl.gov,medium,2,ArcGIS Hub - needs different code
+8,San Antonio,TX,1434,no,Socrata,,data.sanantonio.gov,likely,2,Dataset at data.sanantonio.gov/dataset/building-permits - verify ID + columns
+9,San Diego,CA,1386,no,Custom,,data.sandiego.gov,medium,2,Custom portal. County dataset confirmed Socrata (see San Diego County)
+10,San Diego County,CA,3298,no,Socrata,dyzh-7eat,data.sandiegocounty.gov,likely,2,County-level - covers more than just city
+11,Dallas,TX,1304,no,Socrata,e7gq-4sah,www.dallasopendata.com,confirmed,1,Last updated Jan 2024 - stale. Include with note.
+12,San Jose,CA,1013,no,Unknown,,,unknown,low,verify,No confirmed open data portal for permits
+13,Austin,TX,978,no,Socrata,3syk-w9eu,data.austintexas.gov,confirmed,1,"Fields: permit_number/permittype/issue_date/total_job_valuation/original_address1/contractor_company_name/lat/lng. Daily updates."
+14,Jacksonville,FL,949,no,Unknown,,,unknown,low,verify,
+15,Fort Worth,TX,935,no,ArcGIS_Hub,,,data.fortworthtexas.gov,medium,2,ArcGIS Hub
+16,Columbus,OH,905,no,Unknown,,,unknown,low,verify,
+17,Charlotte,NC,874,no,ArcGIS_Hub,,,data.charlottenc.gov,medium,2,ArcGIS Hub
+18,Indianapolis,IN,887,no,ArcGIS_Hub,,,data.indy.gov,confirmed_arcgis,2,ArcGIS Hub confirmed - no Socrata permit dataset
+19,Seattle,WA,737,no,Socrata,76t5-zqzr,cos-data.seattle.gov,confirmed,1,"Fields: permitnum/estprojectcost/issueddate/originaladdress1/contractorcompanyname/statuscurrent/lat/lng"
+20,Denver,CO,715,no,ArcGIS_Hub,,,denvergov.org,medium,2,Denver uses ArcGIS Hub
+21,Nashville,TN,689,no,ArcGIS_Hub,,,data.nashville.gov,confirmed_arcgis,2,ArcGIS Hub confirmed. Dataset: building-permits-issued
+22,Oklahoma City,OK,681,no,Unknown,,,unknown,low,verify,
+23,El Paso,TX,678,no,Unknown,,,unknown,low,verify,
+24,Washington DC,689,no,ArcGIS_Hub,,,opendata.dc.gov,medium,2,DC uses ArcGIS Hub / ESRI
+25,Las Vegas,NV,641,no,Unknown,,,unknown,low,verify,
+26,Louisville,KY,633,no,Unknown,,,unknown,low,verify,data.louisvilleky.gov - check
+27,Memphis,TN,633,no,Unknown,,,unknown,low,verify,
+28,Portland,OR,652,no,ArcGIS_Hub,,,portlandmaps.com,medium,2,Portland uses PortlandMaps / ArcGIS
+29,Baltimore,MD,585,no,ArcGIS_Hub,,,data.baltimorecity.gov,confirmed_arcgis,2,"ArcGIS Hub. Two datasets: 2015-2018 and 2019-present"
+30,Milwaukee,WI,577,no,Unknown,,,unknown,low,verify,
+31,Albuquerque,NM,564,no,Unknown,,,unknown,medium,verify,opendata.cabq.gov - likely Socrata
+32,Tucson,AZ,542,no,Unknown,,,unknown,medium,verify,data.tucsonaz.gov - check
+33,Fresno,CA,542,no,Unknown,,,unknown,low,verify,
+34,Sacramento,CA,524,no,Unknown,,,unknown,medium,verify,data.cityofsacramento.org - check
+35,Mesa,AZ,504,no,Unknown,,,unknown,low,verify,
+36,Kansas City,MO,508,no,Socrata,ue52-x8g8,data.kcmo.org,confirmed,1,"Core dataset - daily updates 1:30AM. Built to permitdata.org standard."
+37,Atlanta,GA,498,no,ArcGIS_Hub,,,opendata.atlantaga.gov,medium,2,
+38,Omaha,NE,486,no,Unknown,,,unknown,low,verify,
+39,Colorado Springs,CO,478,no,Unknown,,,unknown,low,verify,
+40,Raleigh,NC,467,no,ArcGIS_Hub,,,data.raleighnc.gov,confirmed_arcgis,2,"ArcGIS Hub. Also has Socrata view myhn-yvk9 (residential only - limited)"
+41,Long Beach,CA,466,no,Unknown,,,unknown,low,verify,
+42,Virginia Beach,VA,459,no,Unknown,,,unknown,low,verify,
+43,Miami,FL,442,no,ArcGIS_Hub,,,gis.miamidade.gov,medium,2,Miami-Dade uses ArcGIS
+44,Oakland,CA,440,no,Socrata,,,data.oaklandca.gov,likely,2,Socrata portal confirmed - permit dataset ID not yet found
+45,Tulsa,OK,413,no,Unknown,,,unknown,low,verify,
+46,Tampa,FL,387,no,Unknown,,,unknown,low,verify,
+47,Wichita,KS,397,no,Unknown,,,unknown,low,verify,opendata.wichita.gov - check
+48,New Orleans,LA,383,no,Socrata,,data.nola.gov,likely,1,Appeared in Socrata searches - need to confirm dataset ID
+49,Arlington,TX,394,no,Unknown,,,unknown,low,verify,
+50,Bakersfield,CA,403,no,Unknown,,,unknown,low,verify,
+51,Aurora,CO,366,no,Unknown,,,unknown,low,verify,
+52,Anaheim,CA,336,no,Unknown,,,unknown,low,verify,
+53,Santa Ana,CA,310,no,Unknown,,,unknown,low,verify,
+54,Corpus Christi,TX,317,no,Unknown,,,unknown,low,verify,
+55,Riverside,CA,314,no,Unknown,,,unknown,low,verify,
+56,Lexington,KY,322,no,Unknown,,,unknown,low,verify,
+57,St Louis,MO,301,no,Unknown,,,unknown,medium,verify,data.stlouis-mo.gov - check
+58,Pittsburgh,PA,302,no,Unknown,,,unknown,medium,verify,data.wprdc.org - regional portal
+59,Lincoln,NE,291,no,ArcGIS_Hub,,,lincoln.ne.gov,medium,2,
+60,Buffalo,NY,278,no,Socrata,,,data.buffalony.gov,likely,2,data.buffalony.gov is Socrata - find permit dataset ID
+61,Stockton,CA,311,no,Unknown,,,unknown,low,verify,
+62,St Paul,MN,311,no,Unknown,,,unknown,low,verify,
+63,Cincinnati,OH,309,no,Socrata,uhjb-xac9,data.cincinnati-oh.gov,confirmed,1,"Fields: permitnum/issueddate/estprojectcostdec/originaladdress1/companyname/statuscurrent/lat/lng. Daily refresh."
+64,Orlando,FL,307,no,Socrata,ryhf-m453,data.cityoforlando.net,confirmed,1,"Fields: permit_number/issue_permit_date/estimated_cost/permit_address/contractor_name/application_status/lat/lng"
+65,Greensboro,NC,296,no,Unknown,,,unknown,low,verify,
+66,Newark,NJ,311,no,Unknown,,,unknown,low,verify,
+67,Plano,TX,285,no,Unknown,,,unknown,low,verify,
+68,Henderson,NV,320,no,Unknown,,,unknown,low,verify,
+69,Durham,NC,283,no,ArcGIS_Hub,,,data.durhamnc.gov,medium,2,
+70,Chandler,AZ,261,no,Unknown,,,unknown,low,verify,
+71,St Petersburg,FL,258,no,Unknown,,,unknown,low,verify,
+72,Scottsdale,AZ,258,no,Unknown,,,unknown,low,verify,
+73,Laredo,TX,255,no,Unknown,,,unknown,low,verify,
+74,Irving,TX,256,no,Unknown,,,unknown,low,verify,
+75,Reno,NV,264,no,Accela,,,onenv.us,low,skip,Accela web portal - not scrapable reliably
+76,North Las Vegas,NV,262,no,Unknown,,,unknown,low,verify,
+77,Gilbert,AZ,267,no,Unknown,,,unknown,low,verify,
+78,Lubbock,TX,257,no,Unknown,,,unknown,low,verify,
+79,Glendale,AZ,252,no,Unknown,,,unknown,low,verify,
+80,Madison,WI,269,no,Unknown,,,unknown,medium,verify,data.cityofmadison.com - check
+81,Norfolk,VA,238,no,Socrata,,,data.norfolkva.gov,likely,2,Norfolk uses Socrata per GitHub reference
+82,Chesapeake,VA,249,no,Unknown,,,unknown,low,verify,
+83,Winston-Salem,NC,249,no,Unknown,,,unknown,low,verify,
+84,Garland,TX,246,no,Unknown,,,unknown,low,verify,
+85,Hialeah,FL,224,no,Unknown,,,unknown,low,verify,
+86,Fremont,CA,230,no,Unknown,,,unknown,low,verify,
+87,Boise,ID,235,no,Unknown,,,unknown,low,verify,
+88,Baton Rouge,LA,227,no,Socrata,7fq7-8j7r,data.brla.gov,likely,1,Appeared in global Socrata search - verify columns
+89,Birmingham,AL,212,no,Unknown,,,unknown,low,verify,
+90,Rochester,NY,211,no,Unknown,,,unknown,low,verify,
+91,Richmond,VA,226,no,Unknown,,,unknown,medium,verify,data.richmondgov.com - check
+92,Spokane,WA,218,no,Unknown,,,unknown,low,verify,
+93,Des Moines,IA,214,no,Socrata,,,data.dsm.city,likely,2,data.dsm.city is Socrata - find permit dataset ID
+94,Tacoma,WA,219,no,Unknown,,,unknown,low,verify,
+95,San Bernardino,CA,222,no,Unknown,,,unknown,low,verify,
+96,Modesto,CA,218,no,Unknown,,,unknown,low,verify,
+97,Fontana,CA,214,no,Unknown,,,unknown,low,verify,
+98,Moreno Valley,CA,213,no,Unknown,,,unknown,low,verify,
+99,Fayetteville,NC,208,no,Unknown,,,unknown,low,verify,
+100,Yonkers,NY,211,no,Unknown,,,unknown,low,verify,
+101,Glendale,CA,196,no,Unknown,,,unknown,low,verify,
+102,Akron,OH,190,no,Unknown,,,unknown,low,verify,
+103,Huntington Beach,CA,198,no,Unknown,,,unknown,low,verify,
+104,Little Rock,AR,202,no,Unknown,,,unknown,low,verify,
+105,Augusta,GA,202,no,Unknown,,,unknown,low,verify,
+106,Amarillo,TX,200,no,Unknown,,,unknown,low,verify,
+107,Oxnard,CA,202,no,Socrata,vmzx-48vx,data.oxnard.org,likely,2,Appeared in global Socrata search - verify columns + freshness
+108,Grand Rapids,MI,198,no,Unknown,,,unknown,low,verify,
+109,Tallahassee,FL,196,no,Unknown,,,unknown,low,verify,
+110,Salt Lake City,UT,200,no,Unknown,,,unknown,low,verify,
+111,Huntsville,AL,215,no,Unknown,,,unknown,low,verify,
+112,Worcester,MA,206,no,Unknown,,,unknown,low,verify,
+113,Overland Park,KS,197,no,Unknown,,,unknown,low,verify,
+114,Sioux Falls,SD,192,no,Unknown,,,unknown,low,verify,
+115,Knoxville,TN,190,no,Unknown,,,unknown,low,verify,
+116,Cape Coral,FL,194,no,Unknown,,,unknown,low,verify,
+117,Vancouver,WA,190,no,Unknown,,,unknown,low,verify,
+118,Providence,RI,179,no,Unknown,,,unknown,low,verify,
+119,Tempe,AZ,185,no,Unknown,,,unknown,low,verify,
+120,Chattanooga,TN,181,no,Unknown,,,unknown,low,verify,
+121,Fort Lauderdale,FL,182,no,Unknown,,,unknown,low,verify,
+122,Brownsville,TX,183,no,Unknown,,,unknown,low,verify,
+123,McKinney,TX,195,no,Unknown,,,unknown,low,verify,Fast-growing suburb
+124,Frisco,TX,200,no,Unknown,,,unknown,low,verify,Fast-growing suburb
+125,Springfield,MO,169,no,Unknown,,,unknown,low,verify,
+126,Eugene,OR,176,no,Unknown,,,unknown,low,verify,
+127,Rancho Cucamonga,CA,174,no,Unknown,,,unknown,low,verify,
+128,Santa Rosa,CA,178,no,Unknown,,,unknown,low,verify,
+129,Peoria,AZ,175,no,Unknown,,,unknown,low,verify,
+130,Elk Grove,CA,176,no,Unknown,,,unknown,low,verify,
+131,Ontario,CA,175,no,Unknown,,,unknown,low,verify,
+132,Oceanside,CA,175,no,Unknown,,,unknown,low,verify,
+133,Cary,NC,174,no,Unknown,,,unknown,low,verify,
+134,Palmdale,CA,169,no,Unknown,,,unknown,low,verify,
+135,Fort Collins,CO,169,no,Unknown,,,unknown,low,verify,
+136,Lancaster,CA,173,no,Unknown,,,unknown,low,verify,
+137,Shreveport,LA,187,no,Unknown,,,unknown,low,verify,
+138,Clarksville,TN,166,no,Unknown,,,unknown,low,verify,
+139,Pembroke Pines,FL,162,no,Unknown,,,unknown,low,verify,
+140,Hayward,CA,162,no,Unknown,,,unknown,low,verify,
+141,Salinas,CA,163,no,Unknown,,,unknown,low,verify,
+142,Santa Clarita,CA,228,no,Unknown,,,unknown,low,verify,
+143,Lakewood,CO,160,no,Unknown,,,unknown,low,verify,
+144,Murfreesboro,TN,152,no,Unknown,,,unknown,low,verify,
+145,Mesquite,TX,143,no,Unknown,,,unknown,low,verify,
+146,Killeen,TX,153,no,Unknown,,,unknown,low,verify,
+147,Sunnyvale,CA,153,no,Unknown,,,unknown,low,verify,
+148,Jackson,MS,153,no,Unknown,,,unknown,low,verify,
+149,Pomona,CA,151,no,Unknown,,,unknown,low,verify,
+150,Surprise,AZ,141,no,Unknown,,,unknown,low,verify,
+151,Roseville,CA,141,no,Unknown,,,unknown,low,verify,
+152,Escondido,CA,153,no,Unknown,,,unknown,low,verify,
+153,Gainesville,FL,141,no,Socrata,p798-x3nx,data.cityofgainesville.org,likely,2,Appeared in global Socrata search. Verify freshness.
+154,Visalia,CA,141,no,Unknown,,,unknown,low,verify,
+155,Olathe,KS,141,no,Unknown,,,unknown,low,verify,
+156,Pasadena,TX,153,no,Unknown,,,unknown,low,verify,
+157,McAllen,TX,142,no,Unknown,,,unknown,low,verify,
+158,Denton,TX,139,no,Unknown,,,unknown,low,verify,
+159,Carrollton,TX,139,no,Unknown,,,unknown,low,verify,
+160,Kansas City,KS,156,no,Unknown,,,unknown,low,verify,Separate from KCMO
+161,Springfield,MA,155,no,Unknown,,,unknown,low,verify,
+162,Macon,GA,157,no,Unknown,,,unknown,low,verify,
+163,Alexandria,VA,159,no,Unknown,,,unknown,low,verify,
+164,Hollywood,FL,153,no,Unknown,,,unknown,low,verify,
+165,Warren,MI,139,no,Unknown,,,unknown,low,verify,
+166,Torrance,CA,147,no,Unknown,,,unknown,low,verify,
+167,Rockford,IL,148,no,Unknown,,,unknown,low,verify,
+168,Syracuse,NY,148,no,Unknown,,,unknown,low,verify,
+169,Naperville,IL,148,no,Unknown,,,unknown,low,verify,
+170,Bellevue,WA,148,no,Unknown,,,unknown,low,verify,
+171,Bridgeport,CT,148,no,Unknown,,,unknown,low,verify,
+172,Savannah,GA,147,no,Unknown,,,unknown,low,verify,
+173,Corona,CA,157,no,Unknown,,,unknown,low,verify,
+174,Washington DC,689,no,ArcGIS_Hub,,,opendata.dc.gov,medium,2,See rank 24
+175,Fullerton,CA,143,no,Unknown,,,unknown,low,verify,
+176,Hampton,VA,137,no,Unknown,,,unknown,low,verify,
+177,Sterling Heights,MI,134,no,Unknown,,,unknown,low,verify,
+178,Miramar,FL,140,no,Unknown,,,unknown,low,verify,
+179,West Valley City,UT,140,no,Unknown,,,unknown,low,verify,
+180,Dayton,OH,137,no,Unknown,,,unknown,low,verify,
+181,Columbia,SC,136,no,Unknown,,,unknown,low,verify,
+182,Cedar Rapids,IA,137,no,Unknown,,,unknown,low,verify,
+183,Stamford,CT,135,no,Unknown,,,unknown,low,verify,
+184,Coral Springs,FL,134,no,Unknown,,,unknown,low,verify,
+185,Victorville,CA,134,no,Unknown,,,unknown,low,verify,
+186,New Haven,CT,130,no,Unknown,,,unknown,low,verify,
+187,Concord,CA,129,no,Unknown,,,unknown,low,verify,
+188,Norman,OK,128,no,Unknown,,,unknown,low,verify,
+189,Thousand Oaks,CA,127,no,Unknown,,,unknown,low,verify,
+190,Athens,GA,127,no,Unknown,,,unknown,low,verify,
+191,Topeka,KS,126,no,Unknown,,,unknown,low,verify,
+192,Rochester,MN,121,no,Unknown,,,unknown,low,verify,
+193,Columbia,MO,126,no,Unknown,,,unknown,low,verify,
+194,Fargo,ND,125,no,Unknown,,,unknown,low,verify,
+195,Berkeley,CA,124,no,Unknown,,,unknown,low,verify,data.cityofberkeley.info
+196,Cambridge,MA,118,no,Unknown,,,unknown,low,verify,
+197,Evansville,IN,118,no,Unknown,,,unknown,low,verify,
+198,Arvada,CO,118,no,Unknown,,,unknown,low,verify,
+199,Ann Arbor,MI,121,no,Unknown,,,unknown,low,verify,
+200,Palm Bay,FL,120,no,Unknown,,,unknown,low,verify,
+201,Lansing,MI,112,no,Unknown,,,unknown,low,verify,
+202,Manchester,NH,115,no,Unknown,,,unknown,low,verify,
+203,Wilmington,NC,115,no,Unknown,,,unknown,low,verify,
+204,West Jordan,UT,116,no,Unknown,,,unknown,low,verify,
+205,Lowell,MA,115,no,Unknown,,,unknown,low,verify,
+206,Provo,UT,115,no,Unknown,,,unknown,low,verify,
+207,Billings,MT,117,no,Unknown,,,unknown,low,verify,
+208,Springfield,IL,114,no,Unknown,,,unknown,low,verify,
+209,Inglewood,CA,109,no,Unknown,,,unknown,low,verify,
+210,Murrieta,CA,110,no,Unknown,,,unknown,low,verify,
+211,Downey,CA,111,no,Unknown,,,unknown,low,verify,
+212,Westminster,CO,113,no,Unknown,,,unknown,low,verify,
+213,Costa Mesa,CA,112,no,Unknown,,,unknown,low,verify,
+214,Elgin,IL,112,no,Unknown,,,unknown,low,verify,
+215,Pasadena,CA,138,no,Unknown,,,unknown,low,verify,
+216,Beaumont,TX,117,no,Unknown,,,unknown,low,verify,
+217,Peoria,IL,113,no,Unknown,,,unknown,low,verify,
+218,High Point,NC,112,no,Unknown,,,unknown,low,verify,
+219,Clovis,CA,117,no,Unknown,,,unknown,low,verify,
+220,Midland,TX,132,no,Unknown,,,unknown,low,verify,
+221,West Palm Beach,FL,117,no,Unknown,,,unknown,low,verify,
+222,Clearwater,FL,117,no,Unknown,,,unknown,low,verify,
+223,Hartford,CT,122,no,Unknown,,,unknown,low,verify,
+224,Centennial,CO,108,no,Unknown,,,unknown,low,verify,
+225,Independence,MO,117,no,Unknown,,,unknown,low,verify,
+226,El Monte,CA,116,no,Unknown,,,unknown,low,verify,
+227,Yonkers,NY,211,no,Unknown,,,unknown,low,verify,See rank 100
+228,Anchorage,AK,291,no,Unknown,,,unknown,low,verify,
+229,Worcester,MA,206,no,Unknown,,,unknown,low,verify,See rank 112
+230,Elizabeth,NJ,137,no,Unknown,,,unknown,low,verify,
