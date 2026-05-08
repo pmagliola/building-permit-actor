@@ -38,8 +38,18 @@ Every permit record includes:
 | Minneapolis | MN | Company name | Yes | Current |
 | Baltimore | MD | None in this dataset | Yes | Current |
 | Tempe | AZ | Company name + license | Yes | Current (weekly updates) |
+| Buffalo | NY | Applicant name + license | Yes | Current (2000–present) |
+| Dallas | TX | Company name | Yes | Data not updated since Jan 2024 |
+| Denver | CO | Company name | Yes | Current (daily updates) — residential permits only |
+| Fort Worth | TX | None in this dataset | Yes | Current |
+| Nashville | TN | Contact name | Yes | Current (daily updates, rolling 3-year window) |
+| Norfolk | VA | None in this dataset | Yes | Current (daily weekday updates) |
+| Raleigh | NC | Company name + license | Yes | Current (daily updates, 2000–present) |
+| San Diego County | CA | Company name | Yes | Current (county-wide, last updated Aug 2024) |
 
 **Note on Los Angeles:** The LA open data portal permit datasets are not regularly updated and currently reflect data approximately 12-24 months behind.
+
+**Note on Dallas:** The Dallas open data permit dataset has not been updated since January 2024. Historical data only.
 
 More cities added regularly. Supports both Socrata and ArcGIS Hub open data portals.
 

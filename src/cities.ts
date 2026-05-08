@@ -176,6 +176,33 @@ const NEW_ORLEANS: CityConfig = {
   },
 };
 
+// Note: Dallas open data permit dataset has not been updated since Jan 2024
+const DALLAS: CityConfig = {
+  name: 'Dallas',
+  state: 'TX',
+  domain: 'www.dallasopendata.com',
+  datasetId: 'e7gq-4sah',
+  fields: {
+    permitNumber: 'permit_number',
+    permitType: 'permit_type',
+    issueDate: 'issued_date',
+    projectValue: 'value',
+    streetNumber: 'street_address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'contractor',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: null,
+    description: 'work_description',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
 // ─── ArcGIS cities ────────────────────────────────────────────────────────────
 
 const MINNEAPOLIS: CityConfig = {
@@ -256,6 +283,199 @@ const TEMPE: CityConfig = {
     description: 'Description',
     latitude: 'Latitude',
     longitude: 'Longitude',
+    locationObject: null,
+  },
+};
+
+// Rolling 3-year period, daily updates from Metro Codes e-permits
+// Residential construction permits only; daily updates extracted from Accela
+const DENVER: CityConfig = {
+  name: 'Denver',
+  state: 'CO',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_DEV_RESIDENTIALCONSTPERMIT_P/FeatureServer/316',
+  fields: {
+    permitNumber: 'PERMIT_NUM',
+    permitType: 'CLASS',
+    issueDate: 'DATE_ISSUED',
+    projectValue: 'VALUATION',
+    streetNumber: 'ADDRESS',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'CONTRACTOR_NAME',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: null,
+    description: null,
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
+// Table only (no geometry); File_Date = application filed date; no contractor data
+const FORT_WORTH: CityConfig = {
+  name: 'Fort Worth',
+  state: 'TX',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services5.arcgis.com/3ddLCBXe1bRt7mzj/ArcGIS/rest/services/CFW_Open_Data_Development_Permits_View/FeatureServer/0',
+  fields: {
+    permitNumber: 'Permit_No',
+    permitType: 'Permit_Type',
+    issueDate: 'File_Date',
+    projectValue: 'JobValue',
+    streetNumber: 'Full_Street_Address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: null,
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: null,
+    description: null,
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
+const NASHVILLE: CityConfig = {
+  name: 'Nashville',
+  state: 'TN',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Building_Permits_Issued_2/FeatureServer/0',
+  fields: {
+    permitNumber: 'Permit__',
+    permitType: 'Permit_Type_Description',
+    issueDate: 'Date_Issued',
+    projectValue: 'Const_Cost',
+    streetNumber: 'Address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'Contact',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: null,
+    description: 'Purpose',
+    latitude: 'Lat',
+    longitude: 'Lon',
+    locationObject: null,
+  },
+};
+
+// Daily updates, 2000 to present; full BLDS-standard schema
+const RALEIGH: CityConfig = {
+  name: 'Raleigh',
+  state: 'NC',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Building_Permits/FeatureServer/0',
+  fields: {
+    permitNumber: 'permitnum',
+    permitType: 'permittypemapped',
+    issueDate: 'issueddate',
+    projectValue: 'estprojectcost',
+    streetNumber: 'originaladdress1',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'contractorcompanyname',
+    contractorNamePart2: null,
+    contractorLicense: 'contractorlicnum',
+    contractorLicenseType: null,
+    status: null,
+    description: 'proposedworkdescription',
+    latitude: 'latitude_perm',
+    longitude: 'longitude_perm',
+    locationObject: null,
+  },
+};
+
+// County-wide data; borough field maps to municipality (Chula Vista, El Cajon, etc.)
+const SAN_DIEGO_COUNTY: CityConfig = {
+  name: 'San Diego County',
+  state: 'CA',
+  domain: 'data.sandiegocounty.gov',
+  datasetId: 'dyzh-7eat',
+  fields: {
+    permitNumber: 'record_id',
+    permitType: 'record_type',
+    issueDate: 'issued_date',
+    projectValue: 'valuation',
+    streetNumber: 'street_address',
+    streetDirection: null,
+    streetName: null,
+    borough: 'city',
+    contractorName: 'contractor_name',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'record_status',
+    description: null,
+    latitude: null,
+    longitude: null,
+    locationObject: 'geocoded_column',
+  },
+};
+
+// Daily weekday updates; includes all permit types (building, electrical, plumbing, etc.)
+const NORFOLK: CityConfig = {
+  name: 'Norfolk',
+  state: 'VA',
+  domain: 'data.norfolk.gov',
+  datasetId: 'fahm-yuh4',
+  fields: {
+    permitNumber: 'permit_number',
+    permitType: 'type',
+    issueDate: 'issue_date',
+    projectValue: 'project_cost',
+    streetNumber: 'address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: null,
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'status',
+    description: null,
+    latitude: 'latitude',
+    longitude: 'longitude',
+    locationObject: null,
+  },
+};
+
+// 273k records from 2000-present; applicant field is typically the licensed contractor
+const BUFFALO: CityConfig = {
+  name: 'Buffalo',
+  state: 'NY',
+  domain: 'data.buffalony.gov',
+  datasetId: '9p2d-f3yt',
+  fields: {
+    permitNumber: 'apno',
+    permitType: 'aptype',
+    issueDate: 'issued',
+    projectValue: 'value',
+    streetNumber: 'stname',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'applicant',
+    contractorNamePart2: null,
+    contractorLicense: 'licno',
+    contractorLicenseType: 'lictype',
+    status: null,
+    description: 'descofwork',
+    latitude: 'latitude',
+    longitude: 'longitude',
     locationObject: null,
   },
 };
@@ -389,6 +609,14 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   minneapolis: MINNEAPOLIS,
   baltimore: BALTIMORE,
   tempe: TEMPE,
+  buffalo: BUFFALO,
+  dallas: DALLAS,
+  denver: DENVER,
+  'fort worth': FORT_WORTH,
+  nashville: NASHVILLE,
+  norfolk: NORFOLK,
+  raleigh: RALEIGH,
+  'san diego county': SAN_DIEGO_COUNTY,
 };
 
 export function lookupCity(name: string): CityConfig | null {
