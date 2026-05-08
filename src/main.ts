@@ -1,7 +1,8 @@
 import { Actor, log } from 'apify';
 import { fetchPermits } from './socrata.js';
 import { fetchPermitsArcGis } from './arcgis.js';
-import { lookupCity, listCities } from './cities.js';
+import { fetchPermitsAccelaOne } from './accela.js';
+import { lookupCity, listCities, isAccelaConfig } from './cities.js';
 import type { Input } from './types.js';
 
 await Actor.init();
@@ -38,8 +39,9 @@ for (const cityName of cities) {
     continue;
   }
 
-  const source =
-    config.featureServiceUrl ?? `${config.domain ?? ''}/${config.datasetId ?? ''}`;
+  const source = isAccelaConfig(config)
+    ? `aca-prod.accela.com/ONE (${config.accelaAgency})`
+    : (config.featureServiceUrl ?? `${config.domain ?? ''}/${config.datasetId ?? ''}`);
   log.info(`\n── ${config.name}, ${config.state} (${source})`);
 
   const fetchOptions = {
@@ -52,8 +54,9 @@ for (const cityName of cities) {
   };
 
   try {
-    const permits =
-      config.platform === 'arcgis'
+    const permits = isAccelaConfig(config)
+      ? await fetchPermitsAccelaOne(config, fetchOptions)
+      : config.platform === 'arcgis'
         ? await fetchPermitsArcGis(config, fetchOptions)
         : await fetchPermits(config, fetchOptions);
 

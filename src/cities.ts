@@ -1,4 +1,5 @@
 import type { FieldMapping } from './types.js';
+import type { AccelaAgencyConfig } from './accela.js';
 
 // ─── City config ──────────────────────────────────────────────────────────────
 
@@ -6,15 +7,21 @@ export interface CityConfig {
   name: string;
   state: string;
   /** undefined = Socrata (default) */
-  platform?: 'arcgis';
+  platform?: 'arcgis' | 'accela-one';
   /** Socrata: required. ArcGIS: optional (used in logs/error objects only) */
   domain?: string;
   /** Socrata: required. ArcGIS: optional */
   datasetId?: string;
   /** ArcGIS only: full FeatureServer URL including layer index */
   featureServiceUrl?: string;
+  /** Accela ONE only: agency code e.g. RENO, SPARKS, WASHOE */
+  accelaAgency?: string;
   fields: FieldMapping;
   defaultWhere?: string;
+}
+
+export function isAccelaConfig(config: CityConfig): config is CityConfig & AccelaAgencyConfig {
+  return config.platform === 'accela-one' && !!config.accelaAgency;
 }
 
 // ─── Shared city definitions ──────────────────────────────────────────────────
@@ -589,6 +596,56 @@ const LOS_ANGELES: CityConfig = {
   },
 };
 
+// ─── Accela ONE — Nevada (ONE Regional Portal) ───────────────────────────────
+
+// All three share the same portal: aca-prod.accela.com/ONE (onenv.us)
+// Data includes contractor name, license, phone, job value, and full address.
+// Dummy field mapping required by CityConfig; fields are parsed directly from HTML.
+const EMPTY_FIELDS: FieldMapping = {
+  permitNumber: null,
+  permitType: null,
+  issueDate: null,
+  projectValue: null,
+  streetNumber: null,
+  streetDirection: null,
+  streetName: null,
+  borough: null,
+  contractorName: null,
+  contractorNamePart2: null,
+  contractorLicense: null,
+  contractorLicenseType: null,
+  status: null,
+  description: null,
+  latitude: null,
+  longitude: null,
+  locationObject: null,
+};
+
+const RENO: CityConfig = {
+  name: 'Reno',
+  state: 'NV',
+  platform: 'accela-one',
+  accelaAgency: 'RENO',
+  fields: EMPTY_FIELDS,
+};
+
+const SPARKS: CityConfig = {
+  name: 'Sparks',
+  state: 'NV',
+  platform: 'accela-one',
+  accelaAgency: 'SPARKS',
+  fields: EMPTY_FIELDS,
+};
+
+// Unincorporated Washoe County (excludes City of Reno and City of Sparks)
+const WASHOE_COUNTY: CityConfig = {
+  name: 'Washoe County',
+  state: 'NV',
+  platform: 'accela-one',
+  accelaAgency: 'WASHOE',
+  fields: EMPTY_FIELDS,
+};
+
 // ─── Registry ─────────────────────────────────────────────────────────────────
 
 const CITY_REGISTRY: Record<string, CityConfig> = {
@@ -617,6 +674,10 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   norfolk: NORFOLK,
   raleigh: RALEIGH,
   'san diego county': SAN_DIEGO_COUNTY,
+  reno: RENO,
+  sparks: SPARKS,
+  'washoe county': WASHOE_COUNTY,
+  washoe: WASHOE_COUNTY,
 };
 
 export function lookupCity(name: string): CityConfig | null {

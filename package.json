@@ -1,6 +1,6 @@
 {
   "name": "us-building-permit-scraper",
-  "version": "0.1.0",
+  "version": "0.1.16",
   "description": "Apify Actor — scrape US building permits from city open data portals for construction lead generation",
   "type": "module",
   "main": "dist/main.js",
