@@ -212,6 +212,35 @@ const DALLAS: CityConfig = {
 
 // ─── ArcGIS cities ────────────────────────────────────────────────────────────
 
+// Maricopa County AZ: covers county-wide permits (unincorporated + municipalities using county system).
+// No contractor/value fields available.
+const MARICOPA_COUNTY: CityConfig = {
+  name: 'Maricopa County',
+  state: 'AZ',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/Building_Permits_(view)/FeatureServer/0',
+  fields: {
+    permitNumber: 'PermitNumber',
+    permitType: 'PermitType',
+    issueDate: 'IssuedDate',
+    projectValue: null,
+    streetNumber: 'FullStreetAddress',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: null,
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'PermitStatus',
+    description: 'PermitDescription',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
 const MINNEAPOLIS: CityConfig = {
   name: 'Minneapolis',
   state: 'MN',
@@ -646,6 +675,14 @@ const WASHOE_COUNTY: CityConfig = {
   fields: EMPTY_FIELDS,
 };
 
+const DOUGLAS_COUNTY: CityConfig = {
+  name: 'Douglas County',
+  state: 'NV',
+  platform: 'accela-one',
+  accelaAgency: 'DOUGLAS',
+  fields: EMPTY_FIELDS,
+};
+
 // ─── Registry ─────────────────────────────────────────────────────────────────
 
 const CITY_REGISTRY: Record<string, CityConfig> = {
@@ -678,6 +715,11 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   sparks: SPARKS,
   'washoe county': WASHOE_COUNTY,
   washoe: WASHOE_COUNTY,
+  'douglas county': DOUGLAS_COUNTY,
+  douglas: DOUGLAS_COUNTY,
+  'maricopa county': MARICOPA_COUNTY,
+  maricopa: MARICOPA_COUNTY,
+  phoenix: MARICOPA_COUNTY,
 };
 
 export function lookupCity(name: string): CityConfig | null {

@@ -21,7 +21,7 @@ Every permit record includes:
 | `description` | Work description (where available) |
 | `latitude`, `longitude` | Coordinates (where available) |
 
-## Supported cities
+## Supported cities (26 total)
 
 | City | State | Contractor data | Project value | Data freshness |
 |------|-------|----------------|---------------|----------------|
@@ -38,20 +38,29 @@ Every permit record includes:
 | Minneapolis | MN | Company name | Yes | Current |
 | Baltimore | MD | None in this dataset | Yes | Current |
 | Tempe | AZ | Company name + license | Yes | Current (weekly updates) |
-| Buffalo | NY | Applicant name + license | Yes | Current (2000–present) |
+| Buffalo | NY | Applicant name + license | Yes | Current (2000-present) |
 | Dallas | TX | Company name | Yes | Data not updated since Jan 2024 |
-| Denver | CO | Company name | Yes | Current (daily updates) — residential permits only |
+| Denver | CO | Company name | Yes | Current (daily updates) - residential permits only |
 | Fort Worth | TX | None in this dataset | Yes | Current |
 | Nashville | TN | Contact name | Yes | Current (daily updates, rolling 3-year window) |
 | Norfolk | VA | None in this dataset | Yes | Current (daily weekday updates) |
-| Raleigh | NC | Company name + license | Yes | Current (daily updates, 2000–present) |
-| San Diego County | CA | Company name | Yes | Current (county-wide, last updated Aug 2024) |
+| Raleigh | NC | Company name + license | Yes | Current (daily updates, 2000-present) |
+| San Diego County | CA | Company name | Yes | Current (county-wide) |
+| Reno | NV | None* | None* | Current |
+| Sparks | NV | None* | None* | Current |
+| Washoe County | NV | None* | None* | Current |
+| Maricopa County | AZ | None | None | Current |
+| Douglas County (or Douglas) | NV | None* | None* | Current |
+
+_* Contractor and project value data exists on detail pages but is blocked from cloud IPs by Cloudflare. Planned for a future update._
 
 **Note on Los Angeles:** The LA open data portal permit datasets are not regularly updated and currently reflect data approximately 12-24 months behind.
 
 **Note on Dallas:** The Dallas open data permit dataset has not been updated since January 2024. Historical data only.
 
-More cities added regularly. Supports both Socrata and ArcGIS Hub open data portals.
+**Note on Maricopa County:** Covers the county system (unincorporated areas and municipalities using the county's permitting system). Also accessible as "Phoenix" or "Maricopa".
+
+More cities added regularly. Supports Socrata, ArcGIS, and Accela ONE open data portals.
 
 ## Example inputs
 
@@ -83,19 +92,26 @@ More cities added regularly. Supports both Socrata and ArcGIS Hub open data port
 }
 ```
 
+**Nevada permits (Reno metro + surrounding county):**
+```json
+{
+  "cities": ["Reno", "Sparks", "Washoe County"],
+  "issuedAfter": "2026-01-01"
+}
+```
+
 ## Adding your own city
 
 Any city running Socrata open data can be added via `customEndpoints`:
 
 ```json
 {
-  "cities": [],
   "customEndpoints": [
     {
-      "domain": "data.seattle.gov",
+      "domain": "data.example.gov",
       "datasetId": "your-dataset-id",
-      "cityName": "Seattle",
-      "stateCode": "WA",
+      "cityName": "My City",
+      "stateCode": "ST",
       "fields": {
         "permitNumber": "application_permit_number",
         "permitType": "permit_type",
@@ -109,7 +125,7 @@ Any city running Socrata open data can be added via `customEndpoints`:
 }
 ```
 
-Find your city's dataset at [data.socrata.com](https://www.socrata.com/solutions/open-data/) or by searching `[your city] open data building permits`.
+Find your city's dataset by searching `[your city] open data building permits` and looking for a Socrata portal (typically named `data.[city].gov`).
 
 ## How permits become leads
 
@@ -122,8 +138,8 @@ Example workflow:
 
 ## Pricing
 
-$1.50 per 1,000 permits (base). Results from all cities in a single run count toward the same total.
+$1.50 per 1,000 permits. Results from all cities in a single run count toward the same total.
 
 ## Data sources
 
-All data is sourced from official government open data portals via the Socrata SODA API. All datasets are public domain. No scraping - direct API calls only.
+Data is sourced from official government open data portals. Socrata and ArcGIS cities are accessed via REST API. Accela ONE cities (Reno, Sparks, Washoe County, Douglas County) are scraped from the public-facing citizen portal. All datasets are public record.

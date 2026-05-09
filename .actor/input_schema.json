@@ -6,10 +6,9 @@
     "cities": {
       "title": "Cities",
       "type": "array",
-      "description": "US cities to pull building permits from. Supported: Chicago, New York City, San Francisco, Los Angeles, Seattle, Austin, Cincinnati, Orlando, Baton Rouge, New Orleans, Minneapolis, Baltimore, Tempe. Case-insensitive.",
+      "description": "US cities to pull building permits from (25 supported). Examples: Chicago, New York City, San Francisco, Los Angeles, Seattle, Austin, Cincinnati, Orlando, Baton Rouge, New Orleans, Dallas, San Diego County, Norfolk, Buffalo, Minneapolis, Baltimore, Tempe, Denver, Fort Worth, Nashville, Raleigh, Reno, Sparks, Washoe County, Douglas County. Case-insensitive. Leave blank if using Custom Endpoints only.",
       "editor": "stringList",
-      "example": ["Chicago", "Los Angeles", "Seattle", "Austin", "Minneapolis"],
-      "prefill": ["Chicago"]
+      "example": ["Chicago", "Los Angeles", "Seattle", "Austin", "Minneapolis"]
     },
     "issuedAfter": {
       "title": "Issued after (date)",
@@ -58,7 +57,14 @@
       "default": 300,
       "minimum": 0,
       "maximum": 5000
+    },
+    "customEndpoints": {
+      "title": "Custom Socrata endpoints",
+      "type": "array",
+      "description": "Add any Socrata open data portal not in the built-in city list. Each entry needs cityName, stateCode, domain (e.g. data.kcmo.org), datasetId, and optional fields mapping.",
+      "editor": "json",
+      "example": [{"cityName": "Kansas City", "stateCode": "MO", "domain": "data.kcmo.org", "datasetId": "ue52-x8g8", "fields": {}}]
     }
   },
-  "required": ["cities"]
+  "required": []
 }
