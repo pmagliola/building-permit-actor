@@ -18,6 +18,8 @@ export interface CityConfig {
   accelaAgency?: string;
   fields: FieldMapping;
   defaultWhere?: string;
+  /** ArcGIS only: set true when issueDate field is a non-date string type (skips DATE filter in WHERE clause) */
+  issueDateIsString?: boolean;
 }
 
 export function isAccelaConfig(config: CityConfig): config is CityConfig & AccelaAgencyConfig {
@@ -239,6 +241,37 @@ const DALLAS: CityConfig = {
 
 // ─── ArcGIS cities ────────────────────────────────────────────────────────────
 
+// Sacramento CA: Status_Date is a string field (MM/DD/YYYY) - not a real Date type, so
+// issueDateIsString=true skips the DATE filter in WHERE clause. Date still appears in output.
+// BldgPermitIssued_Archive covers 9 years of history; CurrentYear is always fresh.
+const SACRAMENTO: CityConfig = {
+  name: 'Sacramento',
+  state: 'CA',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/BldgPermitIssued_Archive/FeatureServer/0',
+  issueDateIsString: true,
+  fields: {
+    permitNumber: 'Application',
+    permitType: 'Type',
+    issueDate: 'Status_Date',
+    projectValue: 'Valuation',
+    streetNumber: 'Address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'Contractor',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'Current_Status',
+    description: 'Work_Desc',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
 // Maricopa County AZ: covers county-wide permits (unincorporated + municipalities using county system).
 // No contractor/value fields available.
 const MARICOPA_COUNTY: CityConfig = {
@@ -262,6 +295,93 @@ const MARICOPA_COUNTY: CityConfig = {
     contractorLicenseType: null,
     status: 'PermitStatus',
     description: 'PermitDescription',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
+// Philadelphia PA: PERMITS FeatureServer. No project value. Coordinates from ArcGIS geometry
+// (geocode_x/y are State Plane, not lat/lng). Contractor null on some zoning permit records.
+const PHILADELPHIA: CityConfig = {
+  name: 'Philadelphia',
+  state: 'PA',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/PERMITS/FeatureServer/0',
+  fields: {
+    permitNumber: 'permitnumber',
+    permitType: 'permittype',
+    issueDate: 'permitissuedate',
+    projectValue: null,
+    streetNumber: 'address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'contractorname',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'status',
+    description: 'approvedscopeofwork',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
+// Miami FL: City of Miami permits since 2014. TotalCost stored as string with numeric value.
+// ScopeofWork = permit category (NEW CONSTRUCTION, ADDITION AND REMODELING, etc.)
+const MIAMI: CityConfig = {
+  name: 'Miami',
+  state: 'FL',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services1.arcgis.com/CvuPhqcTQpZPT9qY/arcgis/rest/services/Building_Permits_Since_2014/FeatureServer/0',
+  fields: {
+    permitNumber: 'PermitNumber',
+    permitType: 'ScopeofWork',
+    issueDate: 'IssuedDate',
+    projectValue: 'TotalCost',
+    streetNumber: 'DeliveryAddress',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'CompanyName',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'BuildingPermitStatusDescription',
+    description: 'WorkItems',
+    latitude: 'Latitude',
+    longitude: 'Longitude',
+    locationObject: null,
+  },
+};
+
+// Greensboro NC: MapServer endpoint, supports /query. No coordinates (geometry not returned).
+// PermitNum is Integer type but extractField converts to string.
+const GREENSBORO: CityConfig = {
+  name: 'Greensboro',
+  state: 'NC',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://gis.greensboro-nc.gov/arcgis/rest/services/OpenGateCity/OpenData_HRES_DS/MapServer/2',
+  fields: {
+    permitNumber: 'PermitNum',
+    permitType: 'PermitType',
+    issueDate: 'IssuedDate',
+    projectValue: 'TotalCost',
+    streetNumber: 'FullAddress',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'Contractor',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'CurrentStatus',
+    description: 'Description',
     latitude: null,
     longitude: null,
     locationObject: null,
@@ -778,6 +898,11 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   louisville: LOUISVILLE,
   'louisville ky': LOUISVILLE,
   gainesville: GAINESVILLE,
+  sacramento: SACRAMENTO,
+  philadelphia: PHILADELPHIA,
+  philly: PHILADELPHIA,
+  miami: MIAMI,
+  greensboro: GREENSBORO,
 };
 
 export function lookupCity(name: string): CityConfig | null {

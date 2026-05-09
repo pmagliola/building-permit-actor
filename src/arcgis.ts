@@ -38,7 +38,7 @@ function buildWhereClause(config: CityConfig, options: FetchOptions): string {
   const clauses: string[] = ['1=1'];
 
   const dateField = config.fields.issueDate;
-  if (dateField) {
+  if (dateField && !config.issueDateIsString) {
     // ArcGIS esriFieldTypeDate requires SQL date literals, not epoch ms
     if (options.issuedAfter) {
       clauses.push(`${dateField} >= DATE '${options.issuedAfter}'`);

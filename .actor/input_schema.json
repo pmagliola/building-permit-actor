@@ -6,7 +6,7 @@
     "cities": {
       "title": "Cities",
       "type": "array",
-      "description": "US cities to pull building permits from (28 supported). Examples: Chicago, New York City, San Francisco, Los Angeles, Seattle, Austin, Cincinnati, Orlando, Baton Rouge, New Orleans, Dallas, San Diego County, Norfolk, Buffalo, Minneapolis, Baltimore, Tempe, Denver, Fort Worth, Nashville, Raleigh, Louisville, Gainesville, Reno, Sparks, Washoe County, Douglas County, Maricopa County. Case-insensitive. Leave blank if using Custom Endpoints only.",
+      "description": "US cities to pull building permits from (32 supported). Examples: Chicago, New York City, San Francisco, Los Angeles, Seattle, Austin, Cincinnati, Orlando, Baton Rouge, New Orleans, Dallas, San Diego County, Norfolk, Buffalo, Minneapolis, Baltimore, Tempe, Denver, Fort Worth, Nashville, Raleigh, Louisville, Gainesville, Sacramento, Philadelphia, Miami, Greensboro, Reno, Sparks, Washoe County, Douglas County, Maricopa County. Case-insensitive. Leave blank if using Custom Endpoints only.",
       "editor": "stringList",
       "example": ["Chicago", "Los Angeles", "Seattle", "Austin", "Minneapolis"]
     },
