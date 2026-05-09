@@ -183,6 +183,33 @@ const NEW_ORLEANS: CityConfig = {
   },
 };
 
+// Gainesville FL: no project value field; business = contractor company, contractor = individual name
+const GAINESVILLE: CityConfig = {
+  name: 'Gainesville',
+  state: 'FL',
+  domain: 'data.cityofgainesville.org',
+  datasetId: 'p798-x3nx',
+  fields: {
+    permitNumber: 'permit',
+    permitType: 'type',
+    issueDate: 'issue',
+    projectValue: null,
+    streetNumber: 'address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'business',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: null,
+    description: 'subtype',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    locationObject: null,
+  },
+};
+
 // Note: Dallas open data permit dataset has not been updated since Jan 2024
 const DALLAS: CityConfig = {
   name: 'Dallas',
@@ -750,6 +777,7 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   phoenix: MARICOPA_COUNTY,
   louisville: LOUISVILLE,
   'louisville ky': LOUISVILLE,
+  gainesville: GAINESVILLE,
 };
 
 export function lookupCity(name: string): CityConfig | null {
