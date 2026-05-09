@@ -2,7 +2,7 @@
   "actorSpecification": 1,
   "name": "us-building-permit-scraper",
   "title": "US Building Permit Scraper — Construction Lead Gen",
-  "description": "Pull building permits from 26 US cities and counties. Returns permit type, address, project value, contractor name and license. Covers Chicago, NYC, LA, Seattle, Nashville, Raleigh, Reno, Phoenix/Maricopa, and more. Filter by date, type, or value. Built for solar, roofing, HVAC, and construction lead gen.",
+  "description": "Pull building permits from 27 US cities and counties. Returns permit type, address, project value, contractor name and license. Covers Chicago, NYC, LA, Seattle, Nashville, Raleigh, Reno, Louisville, Phoenix/Maricopa, and more. Filter by date, type, or value. Built for solar, roofing, HVAC, and construction lead gen.",
   "version": "0.1",
   "buildTag": "latest",
   "categories": ["BUSINESS"],

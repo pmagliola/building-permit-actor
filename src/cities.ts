@@ -435,6 +435,34 @@ const RALEIGH: CityConfig = {
   },
 };
 
+// Louisville Metro KY: contractor name, project costs, lat/lng all populated
+const LOUISVILLE: CityConfig = {
+  name: 'Louisville',
+  state: 'KY',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Louisville_Metro_KY_Active_Permits/FeatureServer/0',
+  fields: {
+    permitNumber: 'PERMITNUMBER',
+    permitType: 'PERMITTYPE',
+    issueDate: 'ISSUEDATE',
+    projectValue: 'PROJECTCOSTS',
+    streetNumber: 'ADDRESS',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'CONTRACTOR',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'STATUS',
+    description: null,
+    latitude: 'Latitude',
+    longitude: 'Longitude',
+    locationObject: null,
+  },
+};
+
 // County-wide data; borough field maps to municipality (Chula Vista, El Cajon, etc.)
 const SAN_DIEGO_COUNTY: CityConfig = {
   name: 'San Diego County',
@@ -720,6 +748,8 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   'maricopa county': MARICOPA_COUNTY,
   maricopa: MARICOPA_COUNTY,
   phoenix: MARICOPA_COUNTY,
+  louisville: LOUISVILLE,
+  'louisville ky': LOUISVILLE,
 };
 
 export function lookupCity(name: string): CityConfig | null {

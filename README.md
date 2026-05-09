@@ -21,7 +21,7 @@ Every permit record includes:
 | `description` | Work description (where available) |
 | `latitude`, `longitude` | Coordinates (where available) |
 
-## Supported cities (26 total)
+## Supported cities (27 total)
 
 | City | State | Contractor data | Project value | Data freshness |
 |------|-------|----------------|---------------|----------------|
@@ -51,6 +51,7 @@ Every permit record includes:
 | Washoe County | NV | None* | None* | Current |
 | Maricopa County | AZ | None | None | Current |
 | Douglas County (or Douglas) | NV | None* | None* | Current |
+| Louisville | KY | Company name | Yes | Current |
 
 _* Contractor and project value data exists on detail pages but is blocked from cloud IPs by Cloudflare. Planned for a future update._
 
