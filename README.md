@@ -21,7 +21,7 @@ Every permit record includes:
 | `description` | Work description (where available) |
 | `latitude`, `longitude` | Coordinates (where available) |
 
-## Supported cities (32 total)
+## Supported cities (33 total)
 
 | City | State | Contractor data | Project value | Data freshness |
 |------|-------|----------------|---------------|----------------|
@@ -57,6 +57,7 @@ Every permit record includes:
 | Philadelphia | PA | Company name | None | Current |
 | Miami | FL | Company name | Yes | Current (2014-present) |
 | Greensboro | NC | Company name | Yes | Current |
+| Anaheim | CA | Company name | Yes | Current |
 
 _* Contractor and project value data exists on detail pages but is blocked from cloud IPs by Cloudflare. Planned for a future update._
 

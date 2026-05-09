@@ -582,6 +582,35 @@ const RALEIGH: CityConfig = {
   },
 };
 
+// Anaheim CA: Accela-based FeatureServer. Full address includes city/state in address field.
+// jobvaluation is a String containing numeric value. Contractor sometimes null.
+const ANAHEIM: CityConfig = {
+  name: 'Anaheim',
+  state: 'CA',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services3.arcgis.com/hPs600I3X0RTaaaq/arcgis/rest/services/Accela_Building_Permits/FeatureServer/0',
+  fields: {
+    permitNumber: 'casenumber',
+    permitType: 'typeofwork',
+    issueDate: 'permitissued',
+    projectValue: 'jobvaluation',
+    streetNumber: 'address',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'contractorsname',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'casestatus',
+    description: 'description',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
 // Louisville Metro KY: contractor name, project costs, lat/lng all populated
 const LOUISVILLE: CityConfig = {
   name: 'Louisville',
@@ -903,6 +932,7 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   philly: PHILADELPHIA,
   miami: MIAMI,
   greensboro: GREENSBORO,
+  anaheim: ANAHEIM,
 };
 
 export function lookupCity(name: string): CityConfig | null {
