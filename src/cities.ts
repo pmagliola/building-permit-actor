@@ -611,6 +611,64 @@ const ANAHEIM: CityConfig = {
   },
 };
 
+// Columbus OH: MapServer layer 5. APPLICANT_BUS_NAME = contractor company. G3_VALUE_TTL is Double.
+// Full address in SITE_ADDRESS. 664k records back to ~2000.
+const COLUMBUS: CityConfig = {
+  name: 'Columbus',
+  state: 'OH',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://maps2.columbus.gov/arcgis/rest/services/Schemas/BuildingZoning/MapServer/5',
+  fields: {
+    permitNumber: 'B1_ALT_ID',
+    permitType: 'B1_PER_TYPE',
+    issueDate: 'ISSUED_DT',
+    projectValue: 'G3_VALUE_TTL',
+    streetNumber: 'SITE_ADDRESS',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'APPLICANT_BUS_NAME',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'PERMIT_STATUS',
+    description: 'B1_PER_CATEGORY',
+    latitude: null,
+    longitude: null,
+    locationObject: null,
+  },
+};
+
+// Washington DC: year-specific layers; layer 18 = 2026. PERMIT_APPLICANT = individual filer
+// (contractor or owner). No project value field. Daily updates from DC Dept of Buildings.
+const WASHINGTON_DC: CityConfig = {
+  name: 'Washington DC',
+  state: 'DC',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/18',
+  fields: {
+    permitNumber: 'PERMIT_ID',
+    permitType: 'PERMIT_TYPE_NAME',
+    issueDate: 'ISSUE_DATE',
+    projectValue: null,
+    streetNumber: 'FULL_ADDRESS',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'PERMIT_APPLICANT',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'APPLICATION_STATUS_NAME',
+    description: 'DESC_OF_WORK',
+    latitude: 'LATITUDE',
+    longitude: 'LONGITUDE',
+    locationObject: null,
+  },
+};
+
 // Louisville Metro KY: contractor name, project costs, lat/lng all populated
 const LOUISVILLE: CityConfig = {
   name: 'Louisville',
@@ -933,6 +991,11 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   miami: MIAMI,
   greensboro: GREENSBORO,
   anaheim: ANAHEIM,
+  columbus: COLUMBUS,
+  'columbus oh': COLUMBUS,
+  'washington dc': WASHINGTON_DC,
+  dc: WASHINGTON_DC,
+  washington: WASHINGTON_DC,
 };
 
 export function lookupCity(name: string): CityConfig | null {
