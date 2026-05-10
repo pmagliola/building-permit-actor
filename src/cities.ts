@@ -611,6 +611,35 @@ const ANAHEIM: CityConfig = {
   },
 };
 
+// Tacoma WA: Accela permit data, all permit types (Building, Right-of-Way, Site, Sewer, etc.)
+// applicant_name = contractor company (or "No Primary Applicant Available" when not set).
+const TACOMA: CityConfig = {
+  name: 'Tacoma',
+  state: 'WA',
+  platform: 'arcgis',
+  featureServiceUrl:
+    'https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/accela_permit_data/FeatureServer/0',
+  fields: {
+    permitNumber: 'permit_number',
+    permitType: 'permit_type',
+    issueDate: 'issued_date',
+    projectValue: 'valuation',
+    streetNumber: 'address_line_1',
+    streetDirection: null,
+    streetName: null,
+    borough: null,
+    contractorName: 'applicant_name',
+    contractorNamePart2: null,
+    contractorLicense: null,
+    contractorLicenseType: null,
+    status: 'current_status',
+    description: 'description',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    locationObject: null,
+  },
+};
+
 // Columbus OH: MapServer layer 5. APPLICANT_BUS_NAME = contractor company. G3_VALUE_TTL is Double.
 // Full address in SITE_ADDRESS. 664k records back to ~2000.
 const COLUMBUS: CityConfig = {
@@ -996,6 +1025,7 @@ const CITY_REGISTRY: Record<string, CityConfig> = {
   'washington dc': WASHINGTON_DC,
   dc: WASHINGTON_DC,
   washington: WASHINGTON_DC,
+  tacoma: TACOMA,
 };
 
 export function lookupCity(name: string): CityConfig | null {

@@ -21,7 +21,7 @@ Every permit record includes:
 | `description` | Work description (where available) |
 | `latitude`, `longitude` | Coordinates (where available) |
 
-## Supported cities (35 total)
+## Supported cities (36 total)
 
 | City | State | Contractor data | Project value | Data freshness |
 |------|-------|----------------|---------------|----------------|
@@ -30,6 +30,7 @@ Every permit record includes:
 | San Francisco (or SF) | CA | None in this dataset | Yes | Current |
 | Los Angeles (or LA) | CA | Business name + license | Yes | Typically 12-24 months behind |
 | Seattle | WA | Company name | Yes | Current (daily updates) |
+| Tacoma | WA | Company name | Yes | Current (all Accela permit types) |
 | Austin | TX | Company name + contact name | Yes | Current (daily updates) |
 | Cincinnati | OH | Company name | Yes | Current (daily updates) |
 | Orlando | FL | Company name | Yes | Current (daily updates) |
