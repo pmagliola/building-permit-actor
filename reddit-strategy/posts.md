@@ -25,7 +25,7 @@ Post immediately as a reply to u/Generate_Positive.
 
 ---
 
-**Title:** I built a tool that pulls building permit data from US city open data portals - here's what I learned shipping it
+**Title:** I built a tool that pulls building permit data from 36 US cities - here's what I learned shipping it
 
 **Body:**
 
@@ -33,13 +33,14 @@ Background: building permit data is public record in most US cities, but it's bu
 
 Contractors use this data for lead generation - a roofing company wants to know who just pulled a permit for a roof replacement, a solar installer wants to know who's in the market. The data is all there, it's just not usable in bulk.
 
-I built an Apify actor that normalises permit data across Chicago, NYC, San Francisco and LA into a clean, consistent format. Launched it on the Apify marketplace last month at $1.50/1,000 permits.
+I built an Apify actor that normalises permit data across 36 US cities (Chicago, NYC, LA, Seattle, Miami, Columbus, Washington DC, Tacoma, and more) into a clean, consistent format. Launched it on the Apify marketplace at $1.50/1,000 permits.
 
 A few things I learned along the way:
 
 - Government APIs are surprisingly stable but poorly documented. The hard part was reverse-engineering the field schemas, not the scraping itself.
 - LA's open data is 12-24 months behind. Chicago updates daily. Same product category, wildly different freshness.
-- Normalising inconsistent data across four cities took longer than building the actual scraper. "Permit type" means something different in every city.
+- Cities use at least three different open data platforms (Socrata, ArcGIS, Accela) with completely different APIs. Normalising across all of them took longer than any individual integration.
+- Some cities publish contractor names and license numbers. Others publish nothing. Knowing this upfront would have saved a lot of time.
 - The Apify marketplace approval process was smooth - no email confirmation came through but checking the console directly confirmed it was live.
 
 Happy to answer questions if you're building something similar or thinking about the Apify marketplace as a distribution channel.
@@ -58,7 +59,7 @@ Happy to answer questions if you're building something similar or thinking about
 
 ---
 
-**Title:** I analysed [X] building permits across Chicago, NYC and San Francisco - here's what the data shows about solar
+**Title:** I analysed [X] building permits across [CITIES] - here's what the data shows about solar
 
 **Body:**
 
@@ -93,7 +94,7 @@ Every city in the US publishes building permit data. It's free, it's updated reg
 
 A homeowner who just pulled a roofing permit is probably also in the market for gutters, insulation, or solar. A commercial property that just filed for an electrical upgrade might need new HVAC. The intent signal is right there in the data.
 
-The catch: most city portals only let you search one permit at a time. But most large cities also publish their data on open data platforms - Chicago, NYC, SF and LA all do. You can pull bulk exports, filter by permit type and date range, and build a lead list in a spreadsheet.
+The catch: most city portals only let you search one permit at a time. But most large cities also publish their data on open data platforms - Chicago, NYC, LA, Seattle, Miami, Nashville, Denver, and 30+ others all do. You can pull bulk exports, filter by permit type and date range, and build a lead list in a spreadsheet.
 
 It takes some setup but the data is free and the leads are genuinely fresh - these are people who are actively spending money on their property right now.
 
@@ -109,7 +110,7 @@ Happy to walk through how to do this for any of those cities if it's useful.
 
 **Suggested copy:**
 
-> **US Building Permit Scraper** - pulls fresh building permit data from Chicago, NYC, SF and LA. Normalised output, $1.50/1,000 permits. Useful for contractors doing lead gen, researchers tracking construction trends, or anyone who needs bulk permit data without scraping city portals manually.
+> **US Building Permit Scraper** - pulls fresh building permit data from 36 US cities including Chicago, NYC, LA, Seattle, Miami, Columbus, and Washington DC. Normalised output, $1.50/1,000 permits. Useful for contractors doing lead gen, researchers tracking construction trends, or anyone who needs bulk permit data without scraping city portals manually.
 >
 > Built on Apify: https://apify.com/handstands.io/us-building-permit-scraper
 
