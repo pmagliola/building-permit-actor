@@ -146,6 +146,16 @@ Example workflow:
 2. Export to CSV and import to your CRM
 3. Call the contractor (or property owner) within 48 hours of issue date
 
+## Integrations
+
+Connect permit data to your CRM automatically with Zapier or Make:
+
+- **[Zapier template: Building permits - Google Sheets](https://zapier.com/templates/details/automatically-add-new-building-permits-to-google-sheets-868c24)** - New permits added to a spreadsheet automatically after each run
+- **[Zapier template: Building permits - HubSpot](#)** - New permits created as HubSpot contacts/companies *(coming soon)*
+- **[Make template](#)** - Full workflow with iterator for large permit pulls *(coming soon)*
+
+No code required. Connect in 10 minutes.
+
 ## Pricing
 
 $1.50 per 1,000 permits. Results from all cities in a single run count toward the same total.
